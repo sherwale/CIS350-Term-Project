@@ -19,8 +19,8 @@ public class connectGrid {
         //Sets up a default game of Connect 4 with a size of 600 by 400
         //
         frame = new JFrame("connectGrid");
-        frame.setSize(600, 400);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setSize(600, 400);
         frame.setPreferredSize(frame.getSize());
         frame.add(new createGrid(frame.getSize()));
         //btn.setBounds(400, 100, 60, 30);
@@ -49,7 +49,6 @@ public class connectGrid {
        Color[][] cGrid = new Color[rows][columns];
 
       // JButton btn = new JButton("Reset");
-
        public createGrid(Dimension dimension){
            setPreferredSize(dimension);
            setSize(dimension);
@@ -65,8 +64,8 @@ public class connectGrid {
 
        @Override
        public void paintComponent(Graphics connectGraphic){
-           Dimension dimensionPaint = getSize();
            Graphics2D graphic2 = (Graphics2D)connectGraphic;
+           Dimension dimensionPaint = getSize();
            //creates the background in blue for the connect 4 game.
            graphic2.setColor(new Color(0, 0, 180));
            graphic2.fillRect(0,0,dimensionPaint.width, dimensionPaint.height);
@@ -74,12 +73,12 @@ public class connectGrid {
            startingY = 0;
            //Fills the grid in with white 42 ovals for the spots where the pieces will go when placed.
            for (int i = 0; i < cGrid.length; ++i){
-               startingX = 0;
                for(int j = 0; j<cGrid[0].length; ++j){
                    graphic2.setColor(cGrid[i][j]);
                    graphic2.fillOval(startingX, startingY, circleWidth, circleWidth);
                    startingX = startingX + circleWidth;
                }
+               startingX = 0;
                startingY = startingY + circleWidth;
            }
 
@@ -95,13 +94,11 @@ public class connectGrid {
                graphic2.drawString("Red Player Won", 400, 20);
            }else if(won == 1){
                graphic2.drawString("Yellow Player Won", 400, 20);
-           }else if(won == 2){
+           }else{
                graphic2.drawString("Game in Progress", 400, 20);
-           }else if(white != 0){
-               graphic2.drawString("Tie Game", 400, 20);
+          // }else if(white != 0){
+            //   graphic2.drawString("Tie Game", 400, 20);
            }
-
-
        }
 
 
@@ -178,10 +175,8 @@ public class connectGrid {
             int check = 0;
             int check2 = 0;
             //Goes through the grid and checks for winner horizontally.
-            for(int i = 0; i<cGrid[0].length -1; ++i){
-                check = 0;
-                check2 = 0;
-                for(int j = 0; j<cGrid.length -1; ++j){
+            for(int i = 0; i<cGrid[0].length-1; ++i){
+                for(int j = 0; j<cGrid.length; ++j){
                     //if there is 4 reds in a row horizontally then red won.
                     if(cGrid[i][j].equals(new Color(255,0,0))){
                         check++;
