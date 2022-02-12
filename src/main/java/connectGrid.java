@@ -12,7 +12,7 @@ import javax.swing.JButton;
 
 public class connectGrid {
     private JFrame frame;
-   // private JPanel panel = new JPanel();
+   //private JPanel panel = new JPanel();
    //JButton btn = new JButton("Reset");
     public connectGrid(){
 
@@ -41,9 +41,9 @@ public class connectGrid {
        int currentTurn = 1;
        int rows = 6;
        int columns = 7;
-       int circleWidth = 50;
        int startingX = 0;
        int startingY = 0;
+       int circleWidth = 50;
        int won = 2;
        int white = 0;
        Color[][] cGrid = new Color[rows][columns];
@@ -51,8 +51,8 @@ public class connectGrid {
       // JButton btn = new JButton("Reset");
 
        public createGrid(Dimension dimension){
-           setSize(dimension);
            setPreferredSize(dimension);
+           setSize(dimension);
            addMouseListener(this);
            //creates the grid of the 6 by 7 connect 4 game in white
            for(int i = 0; i <cGrid.length; ++i) {
@@ -65,9 +65,8 @@ public class connectGrid {
 
        @Override
        public void paintComponent(Graphics connectGraphic){
-
-           Graphics2D graphic2 = (Graphics2D)connectGraphic;
            Dimension dimensionPaint = getSize();
+           Graphics2D graphic2 = (Graphics2D)connectGraphic;
            //creates the background in blue for the connect 4 game.
            graphic2.setColor(new Color(0, 0, 180));
            graphic2.fillRect(0,0,dimensionPaint.width, dimensionPaint.height);
@@ -75,12 +74,12 @@ public class connectGrid {
            startingY = 0;
            //Fills the grid in with white 42 ovals for the spots where the pieces will go when placed.
            for (int i = 0; i < cGrid.length; ++i){
+               startingX = 0;
                for(int j = 0; j<cGrid[0].length; ++j){
                    graphic2.setColor(cGrid[i][j]);
                    graphic2.fillOval(startingX, startingY, circleWidth, circleWidth);
                    startingX = startingX + circleWidth;
                }
-               startingX = 0;
                startingY = startingY + circleWidth;
            }
 
@@ -107,7 +106,6 @@ public class connectGrid {
 
 
         public void mousePressed(MouseEvent e) {
-
             int x = e.getX();
             int xLocation = x/circleWidth;
             int yLocation = opening(xLocation);
@@ -145,7 +143,6 @@ public class connectGrid {
                if(yLocation < 0){
                    return 20;
                }
-
            }
            return yLocation;
         }
