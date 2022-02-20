@@ -6,7 +6,7 @@ By: Alek Sherwood
 
 ### Win Conditions
 
-```markdown
+```
 Currently you can win one of two ways:
 
  *By connecting four of your pieces vertically.
