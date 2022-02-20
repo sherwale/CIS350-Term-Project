@@ -4,12 +4,12 @@ You can play a two person game of Connect Four against another person, no comput
 
 By: Alek Sherwood
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Win Conditions
 
 ```markdown
 Currently you can win one of two ways:
+
  *By connecting four of your pieces vertically.
+ 
  *By connecting four of your pieces horizontally.
 
