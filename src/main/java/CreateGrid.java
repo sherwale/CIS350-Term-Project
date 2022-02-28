@@ -1,5 +1,5 @@
 
-import javax.swing.*;
+import javax.swing.JPanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Color;
@@ -7,17 +7,31 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-public class CreateGrid extends JPanel implements MouseListener {
 
-    int currentTurn = 1;
-    int rows = 6;
-    int columns = 7;
-    Color[][] cGrid = new Color[rows][columns];
-    int startingX = 0;
-    int startingY = 0;
-    int circleWidth = 50;
-    int won = 2;
-    int outOfBounds = 20;
+public class CreateGrid extends JPanel implements MouseListener {
+    /** Which player's turn it is.*/
+    private int currentTurn = 1;
+    /** The number of rows for the grid.*/
+    private int rows = 6;
+    /** The number of columns for the grid.*/
+    private int columns = 7;
+    /** Creates a grid of colors for the game.*/
+    private Color[][] cGrid = new Color[rows][columns];
+    /** The starting x position on the GUI.*/
+    private int startingX = 0;
+    /** The starting y position on the GUI.*/
+    private int startingY = 0;
+    /** The width of the pieces and grid spots.*/
+    private int circleWidth = 50;
+    /** Which player won the game.*/
+    private int won = 2;
+    /** int to check for if what is
+     * clicked is out of bounds.*/
+    private int outOfBounds = 20;
+    /**
+     *
+     * Creates a 6 by 7 grid of connect 4.
+     */
     public CreateGrid() {
         addMouseListener(this);
         //creates the grid of the 6 by 7 connect 4 game in white
@@ -28,8 +42,13 @@ public class CreateGrid extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     * Overrides the paintComponent method to implement painting
+     * the board and repainting it when pieces are placed.
+     * @param connectGraphic a graphics object.
+     */
     @Override
-    public void paintComponent(Graphics connectGraphic) {
+    public void paintComponent(final Graphics connectGraphic) {
         Graphics2D graphic2 = (Graphics2D) connectGraphic;
         Dimension dimensionPaint = getSize();
         //creates the background in blue for the connect 4 game.
@@ -67,7 +86,11 @@ public class CreateGrid extends JPanel implements MouseListener {
         }
     }
 
-    public void mousePressed(MouseEvent e) {
+    /**
+     * Checks if mouse was pressed.
+     * @param e gets what the mouse event is.
+     */
+    public void mousePressed(final MouseEvent e) {
         int xLocation = e.getX() / circleWidth;
         int yLocation = opening(xLocation);
         //if the game is ongoing it will update the grid with who's piece it is
@@ -97,7 +120,13 @@ public class CreateGrid extends JPanel implements MouseListener {
         }
     }
 
-    public int opening(int xLocation) {
+    /**
+     * Checks for an open spot below where the player pressed.
+     * @param xLocation the x location
+     *                  of the GUI which the player pressed.
+     * @return returns the y location if okay, and outOfbounds if not.
+     */
+    public int opening(final int xLocation) {
         int yLocation = rows - 1;
         //checks if the spot in the gird is open
         // and returns the lowest open spot if available.
@@ -110,6 +139,10 @@ public class CreateGrid extends JPanel implements MouseListener {
         return yLocation;
     }
 
+    /**
+     * Checks the vertical win condition of 4 pieces in a row.
+     * @return returns which player won or if neither did.
+     */
     public int checkVertical() {
         int check = 0;
         int check2 = 0;
@@ -138,6 +171,11 @@ public class CreateGrid extends JPanel implements MouseListener {
             //return 2 noting that there is no winner and the game is ongoing.
         }   return 2;
     }
+
+    /**
+     * Checks the horizontal win condition of 4 pieces in a row.
+     * @return returns which player won or if neither did.
+     */
     public int checkHorizontal() {
         int check = 0;
         int check2 = 0;
@@ -152,7 +190,8 @@ public class CreateGrid extends JPanel implements MouseListener {
                         return 0;
                     }
                 } else if (cGrid[i][j].equals(new Color(255, 255, 0))) {
-                    //if there is 4 yellows in a row horizontally then yellow won.
+                    //if there is 4 yellows in a
+                    // row horizontally then yellow won.
                     check = 0;
                     check2++;
                     if (check2 >= 4) {
@@ -166,9 +205,29 @@ public class CreateGrid extends JPanel implements MouseListener {
             //return 2 noting that there is no winner and the game is ongoing.
         }   return 2;
     }
-    //under are needed for compiling
-    public void mouseEntered(MouseEvent e) { }
-    public void mouseReleased(MouseEvent e) { }
-    public void mouseClicked(MouseEvent e) { }
-    public void mouseExited(MouseEvent e) { }
+
+    //below are needed for compiling.
+    /**
+     * Checks for mouse entered.
+     * @param e Which mouse event happened.
+     */
+    public void mouseEntered(final MouseEvent e) { }
+
+    /**
+     * Checks for mouse released.
+     * @param e Which mouse event happened.
+     */
+    public void mouseReleased(final MouseEvent e) { }
+
+    /**
+     * Checks for mouse clicked.
+     * @param e What mouse event happened.
+     */
+    public void mouseClicked(final MouseEvent e) { }
+
+    /**
+     * Checks for mouse exited.
+     * @param e Which mouse event happened.
+     */
+    public void mouseExited(final MouseEvent e) { }
 }
