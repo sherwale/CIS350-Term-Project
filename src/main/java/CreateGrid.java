@@ -81,8 +81,10 @@ public class CreateGrid extends JPanel implements MouseListener {
             graphic2.drawString("Red Player Won", 400, 20);
         } else if (won == 1) {
             graphic2.drawString("Yellow Player Won", 400, 20);
-        } else {
+        } else if (won == 2) {
             graphic2.drawString("Game in Progress", 400, 20);
+        } else {
+            graphic2.drawString("Game is Tied", 400, 20);
         }
     }
 
@@ -113,6 +115,7 @@ public class CreateGrid extends JPanel implements MouseListener {
         int result2 = ConnectLogic.checkHorizontal();
         int result3 = ConnectLogic.checkDiagonal1();
         int result4 = ConnectLogic.checkDiagonal2();
+        int tie = ConnectLogic.checkTie();
         if (result == 0 || result2 == 0 || result3 == 0 || result4 == 0) {
             won = 0;
         } else if (result == 1 || result2 == 1
@@ -121,6 +124,10 @@ public class CreateGrid extends JPanel implements MouseListener {
         } else {
             won = 2;
         }
+        if (tie == 1) {
+            won = 3;
+        }
+
     }
 
     //below are needed for compiling.

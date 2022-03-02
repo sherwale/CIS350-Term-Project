@@ -137,7 +137,7 @@ public class ConnectLogic extends CreateGrid {
         int check = 0;
         int check2 = 0;
         for (int y = 0; y < cGrid[0].length - 3; ++y) {
-            for (int x = 3; x < cGrid[0].length -1; ++x) {
+            for (int x = 3; x < cGrid[0].length - 1; ++x) {
                 for (int i = 0; i < 4; ++i) {
                     if (cGrid[x - i][y + i].equals(new Color(255, 0, 0))) {
                         check++;
@@ -161,5 +161,26 @@ public class ConnectLogic extends CreateGrid {
             }
         }
         return 2;
+    }
+    /**
+     * Checks for a tie
+     * from top right to bottom left.
+     *
+     * @return returns if all tiles are full.
+     */
+    public static int checkTie() {
+        int check = 0;
+        for (int y = 0; y < cGrid[0].length; ++y) {
+            for (int x = 0; x < cGrid[0].length - 1; ++x) {
+               if (cGrid[x][y].equals(new Color(255, 255, 255))) {
+                    check++;
+                }
+            }
+        }
+        if (check > 0) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

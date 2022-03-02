@@ -31,6 +31,6 @@ public class ConnectGrid extends CreateGrid {
      * @param argv the argument parameter.
      */
     public static void main(final String[] argv) {
-        new ConnectGrid();
+        new ConnectHome();
     }
     }
