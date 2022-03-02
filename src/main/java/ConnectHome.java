@@ -14,15 +14,16 @@ public class ConnectHome {
 
         panel = new JPanel();
         label = new JLabel("Connect Four");
-        label.setFont(new Font("Verdana", 1, 20));
+        label.setFont(new Font("Verdana", 1, 70));
         label.setForeground(Color.WHITE);
         panel.setBackground(Color.BLUE);
-        panel.add(label);
         home = new JFrame("Home Screen");
-        start = new JButton("Start A Game!");
-        start.setBounds(50, 100, 50,20);
+        start = new JButton("Start A Game Against Another Person");
+        panel.setLayout(new BorderLayout());
+        start.setBounds(50, 100, 50,50);
         home.add(panel);
-        panel.add(start);
+        panel.add(label, BorderLayout.NORTH);
+        panel.add(start, BorderLayout.SOUTH);
         home.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         home.setSize(550, 420);
         home.setPreferredSize(home.getSize());
@@ -30,8 +31,8 @@ public class ConnectHome {
         start.addActionListener((new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
-                start.setVisible(false);
                 new ConnectGrid();
+                home.setVisible(false);
             }
         }));
     }
