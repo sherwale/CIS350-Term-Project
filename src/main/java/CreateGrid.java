@@ -11,26 +11,26 @@ import java.util.Scanner;
 
 public class CreateGrid extends JPanel implements MouseListener {
     /** Which player's turn it is.*/
-    public static int currentTurn = 1;
+    protected static int currentTurn = 1;
     /** The number of rows for the grid.*/
-    public static int rows = 6;
+    protected static int rows = 6;
     /** The number of columns for the grid.*/
-    public static int columns = 7;
+    protected static int columns = 7;
     /** Creates a grid of colors for the game.*/
-    public static Color[][] cGrid;
+    protected static Color[][] cGrid;
     /** The starting x position on the GUI.*/
-    public static int startingX = 0;
+    protected static int startingX = 0;
     /** The starting y position on the GUI.*/
-    public static int startingY = 0;
+    protected static int startingY = 0;
     /** The width of the pieces and grid spots.*/
-    public static int circleWidth = 50;
+    protected static final int circleWidth = 50;
     /** Which player won the game.*/
-    public static int won = 2;
+    protected static int won = 2;
     /** int to check for if what is
      * clicked is out of bounds.*/
-    public static int outOfBounds = 20;
+    protected static final int outOfBounds = 20;
     /** Sets the x value for the print statements of who won.*/
-    public static int printX = 400;
+    protected static int printX = 400;
     /**
      *
      * Creates a 6 by 7 grid of connect 4.
@@ -185,6 +185,22 @@ public class CreateGrid extends JPanel implements MouseListener {
      */
     public void setPrintX(final int newX) {
         printX = newX;
+    }
+
+    /**
+     * Gets the rows.
+     * @return returns the number of rows.
+     */
+    public int getRows() {
+        return rows;
+    }
+
+    /**
+     * Gets the columns.
+     * @return returns the number of columns.
+     */
+    public int getCols() {
+        return columns;
     }
 
     /**

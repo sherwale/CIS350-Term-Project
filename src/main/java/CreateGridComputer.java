@@ -12,26 +12,26 @@ import java.util.Scanner;
 
 public class CreateGridComputer extends JPanel implements MouseListener {
     /** Which player's turn it is.*/
-    public static int currentTurn = 1;
+    protected static int currentTurn = 1;
     /** The number of rows for the grid.*/
-    public static int rows = 6;
+    protected static int rows = 6;
     /** The number of columns for the grid.*/
-    public static int columns = 7;
+    protected static int columns = 7;
     /** Creates a grid of colors for the game.*/
-    public static Color[][] cGrid;
+    protected static Color[][] cGrid;
     /** The starting x position on the GUI.*/
-    public static int startingX = 0;
+    protected static int startingX = 0;
     /** The starting y position on the GUI.*/
-    public static int startingY = 0;
+    protected static int startingY = 0;
     /** The width of the pieces and grid spots.*/
-    public static int circleWidth = 50;
+    protected static final int circleWidth = 50;
     /** Which player won the game.*/
-    public static int won = 2;
+    protected static int won = 2;
     /** int to check for if what is
      * clicked is out of bounds.*/
-    public static int outOfBounds = 20;
+    protected static final int outOfBounds = 20;
     /** Sets teh x value for the print statements of who won. */
-    public static int printX = 400;
+    protected static int printX = 400;
     /**
      *
      * Creates a 6 by 7 grid of connect 4.
@@ -168,8 +168,9 @@ public class CreateGridComputer extends JPanel implements MouseListener {
      */
     public void computerTurn() {
         Random rand = new Random();
+        int n;
         while (true) {
-            int n = rand.nextInt(columns);
+            n = rand.nextInt(columns);
             int yLocation = ConnectGridLogicComputer.openingComputer(n);
             //if the game is ongoing it will update
             //the grid with who's piece it is
@@ -240,6 +241,23 @@ public class CreateGridComputer extends JPanel implements MouseListener {
             System.exit(0);
         }
     }
+
+    /**
+     * Gets the rows.
+     * @return returns the number of rows.
+     */
+    public int getRows() {
+        return rows;
+    }
+
+    /**
+     * Gets the columns.
+     * @return returns the number of columns.
+     */
+    public int getCols() {
+        return columns;
+    }
+
     //below are needed for compiling.
     /**
      * Checks for mouse entered.
