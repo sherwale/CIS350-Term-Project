@@ -30,8 +30,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
         int check = 0;
         int check2 = 0;
         //Goes through the grid and checks for winner vertically.
-        for (int i = 0; i < cGrid[0].length; ++i) {
-            for (int j = 0; j < cGrid[0].length - 1; ++j) {
+        for (int i = 0; i < columns; ++i) {
+            for (int j = 0; j < rows; ++j) {
                 //if there is 4 reds in a row vertically then red won.
                 if (cGrid[j][i].equals(new Color(255, 0, 0))) {
                     check++;
@@ -65,8 +65,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
         int check = 0;
         int check2 = 0;
         //Goes through the grid and checks for winner horizontally.
-        for (int i = 0; i < cGrid[0].length - 1; ++i) {
-            for (int j = 0; j < cGrid[0].length; ++j) {
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < columns; ++j) {
                 //if there is 4 reds in a row horizontally then red won.
                 if (cGrid[i][j].equals(new Color(255, 0, 0))) {
                     check++;
@@ -101,8 +101,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
     public static int checkDiagonal1Computer() {
         int check = 0;
         int check2 = 0;
-        for (int y = 0; y < cGrid[0].length - 3; ++y) {
-            for (int x = 0; x < cGrid[0].length - 4; ++x) {
+        for (int y = 0; y < columns - 3; ++y) {
+            for (int x = 0; x < rows - 3; ++x) {
                 for (int i = 0; i < 4; ++i) {
                     if (cGrid[x + i][y + i].equals(new Color(255, 0, 0))) {
                         check++;
@@ -110,7 +110,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
                         if (check >= 4) {
                             return 0;
                         }
-                    } else if (cGrid[x + i][y + i].equals(new Color(255, 255, 0))) {
+                    } else if (cGrid[x + i][y + i]
+                            .equals(new Color(255, 255, 0))) {
                         //if there is 4 yellows in a
                         // row horizontally then yellow won.
                         check = 0;
@@ -136,8 +137,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
     public static int checkDiagonal2Computer() {
         int check = 0;
         int check2 = 0;
-        for (int y = 0; y < cGrid[0].length - 3; ++y) {
-            for (int x = 3; x < cGrid[0].length - 1; ++x) {
+        for (int y = 0; y < columns - 3; ++y) {
+            for (int x = 3; x < rows - 3; ++x) {
                 for (int i = 0; i < 4; ++i) {
                     if (cGrid[x - i][y + i].equals(new Color(255, 0, 0))) {
                         check++;
@@ -145,7 +146,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
                         if (check >= 4) {
                             return 0;
                         }
-                    } else if (cGrid[x - i][y + i].equals(new Color(255, 255, 0))) {
+                    } else if (cGrid[x - i][y + i]
+                            .equals(new Color(255, 255, 0))) {
                         //if there is 4 yellows in a
                         // row horizontally then yellow won.
                         check = 0;
@@ -170,8 +172,8 @@ public class ConnectGridLogicComputer extends CreateGridComputer {
      */
     public static int checkTieComputer() {
         int check = 0;
-        for (int y = 0; y < cGrid[0].length; ++y) {
-            for (int x = 0; x < cGrid[0].length - 1; ++x) {
+        for (int y = 0; y < columns; ++y) {
+            for (int x = 0; x < rows; ++x) {
                 if (cGrid[x][y].equals(new Color(255, 255, 255))) {
                     check++;
                 }

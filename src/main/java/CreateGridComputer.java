@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class CreateGridComputer extends JPanel implements MouseListener {
@@ -17,7 +18,7 @@ public class CreateGridComputer extends JPanel implements MouseListener {
     /** The number of columns for the grid.*/
     public static int columns = 7;
     /** Creates a grid of colors for the game.*/
-    public static Color[][] cGrid = new Color[rows][columns];
+    public static Color[][] cGrid;
     /** The starting x position on the GUI.*/
     public static int startingX = 0;
     /** The starting y position on the GUI.*/
@@ -29,12 +30,18 @@ public class CreateGridComputer extends JPanel implements MouseListener {
     /** int to check for if what is
      * clicked is out of bounds.*/
     public static int outOfBounds = 20;
+    /** Sets teh x value for the print statements of who won. */
+    public static int printX = 400;
     /**
      *
      * Creates a 6 by 7 grid of connect 4.
      */
     public CreateGridComputer() {
         addMouseListener(this);
+        setRows(6);
+        setColumns(7);
+        setPrintX(400);
+        cGrid = new Color[rows][columns];
         //creates the grid of the 6 by 7 connect 4 game in white
         for (int i = 0; i < cGrid.length; ++i) {
             for (int j = 0; j < cGrid[0].length; ++j) {
@@ -43,6 +50,24 @@ public class CreateGridComputer extends JPanel implements MouseListener {
         }
     }
 
+    /**
+     *  Creates a grid given the row and column count.
+     * @param newRow the new row amount.
+     * @param newCol the new column amount.
+     */
+    public CreateGridComputer(final int newRow, final int newCol) {
+        addMouseListener(this);
+        setRows(newRow);
+        setColumns(newCol);
+        setPrintX(newCol * 70);
+        cGrid = new Color[rows][columns];
+        //creates the grid of the 6 by 7 connect 4 game in white
+        for (int i = 0; i < cGrid.length; ++i) {
+            for (int j = 0; j < cGrid[0].length; ++j) {
+                cGrid[i][j] = new Color(255, 255, 255);
+            }
+        }
+    }
     /**
      * Overrides the paintComponent method to implement painting
      * the board and repainting it when pieces are placed.
@@ -73,19 +98,25 @@ public class CreateGridComputer extends JPanel implements MouseListener {
         //Draws under the grid which player's turn it is currently.
         graphic2.setColor(new Color(255, 255, 255));
         if (currentTurn == 1) {
-            graphic2.drawString("Yellow Player's Turn", 120, 350);
+            graphic2.drawString("Yellow Player's Turn", printX, 50);
         } else {
-            graphic2.drawString("Red Player's Turn", 120, 350);
+            graphic2.drawString("Red Player's Turn", printX, 50);
         }
         //checks if the game is in progress or if one player won yet.
         if (won == 0) {
-            graphic2.drawString("Red Player Won", 400, 20);
+            graphic2.drawString("Red Player Won", printX, 20);
+            reset();
+            won = 2;
         } else if (won == 1) {
-            graphic2.drawString("Yellow Player Won", 400, 20);
+            graphic2.drawString("Yellow Player Won", printX, 20);
+            reset();
+            won = 2;
         } else if (won == 2) {
-            graphic2.drawString("Game in Progress", 400, 20);
+            graphic2.drawString("Game in Progress", printX, 20);
         } else {
-            graphic2.drawString("Game is Tied", 400, 20);
+            graphic2.drawString("Game is Tied", printX, 20);
+            reset();
+            won = 2;
         }
     }
 
@@ -131,13 +162,17 @@ public class CreateGridComputer extends JPanel implements MouseListener {
 
     }
 
+
+    /**
+     * The computer picks a random x value.
+     */
     public void computerTurn() {
         Random rand = new Random();
         while (true) {
             int n = rand.nextInt(columns);
-            n++;
             int yLocation = ConnectGridLogicComputer.openingComputer(n);
-            //if the game is ongoing it will update the grid with who's piece it is
+            //if the game is ongoing it will update
+            //the grid with who's piece it is
             //based on where the board is pressed.
             if (yLocation == outOfBounds) {
                 System.out.println("Pick a New Spot, Column is Full.");
@@ -166,11 +201,45 @@ public class CreateGridComputer extends JPanel implements MouseListener {
             if (tie == 1) {
                 won = 3;
             }
-
     }
 
+    /**
+     * Sets the row count.
+     * @param rowNum the new row count.
+     */
+    public void setRows(final int rowNum) {
+        rows = rowNum;
+    }
 
+    /**
+     * Sets the column count.
+     * @param colNum the new column count.
+     */
+    public void setColumns(final int colNum) {
+        columns = colNum;
+    }
 
+    /**
+     * Sets the x position for the prints.
+     * @param newX the new x position.
+     */
+    public void setPrintX(final int newX) {
+        printX = newX;
+    }
+
+    /**
+     * Checks if you want to play a new game.
+     */
+    public void reset() {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("New Game? (1 for Yes, 0 For No)");
+        int game = reader.nextInt();
+        if (game == 1) {
+            new ConnectHome();
+        } else {
+            System.exit(0);
+        }
+    }
     //below are needed for compiling.
     /**
      * Checks for mouse entered.
